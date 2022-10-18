@@ -1,14 +1,14 @@
 import torch.nn as nn
 import torch.nn.functional as F
 import torch
-from torchvision.models import vgg19, resnet50
+from torchvision.models import vgg19, VGG19_Weights
 import math
 
 
 class FeatureExtractor(nn.Module):
     def __init__(self):
         super(FeatureExtractor, self).__init__()
-        vgg19_model = vgg19(pretrained=True)
+        vgg19_model = vgg19(weights=VGG19_Weights.DEFAULT)
         self.feature_extractor = nn.Sequential(*list(vgg19_model.features.children())[:18])
 
     def forward(self, img):
