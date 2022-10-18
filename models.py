@@ -9,7 +9,7 @@ class FeatureExtractor(nn.Module):
     def __init__(self):
         super(FeatureExtractor, self).__init__()
         resnet50_model = resnet50(weights='ResNet50_Weights.DEFAULT')
-        self.feature_extractor = nn.Sequential(*list(resnet50_model.features.children())[-1])
+        self.feature_extractor = nn.Sequential(*list(resnet50_model.children())[-1])
 
     def forward(self, img):
         return self.feature_extractor(img)
